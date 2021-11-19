@@ -73,7 +73,7 @@ class InspectHooks:
         if 'no_inspect'in node.tags:
             return
         node_name=node.name
-location, number_lines = _inspect_func(node.func)~
+        location, number_lines = _inspect_func(node.func)
         log.info(f"`{node_name}` defined at {location} and is {number_lines} lines long")
 
     @hook_impl
