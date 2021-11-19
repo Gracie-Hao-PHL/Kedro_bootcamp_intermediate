@@ -70,9 +70,10 @@ class InspectHooks:
     @hook_impl
     def before_node_run(self, node: Node) -> None:
         node_name, location, number_lines = None, None, None
-        # TODO: Find the real value of each of the above variables.
-        #  Use _inspect_func to find location and number_lines.
-        #  Do not print the information if the node is tagged with "no_inspect".
+        if 'no_inspect'in node.tags:
+            return
+        node_name=node.name
+location, number_lines = _inspect_func(node.func)~
         log.info(f"`{node_name}` defined at {location} and is {number_lines} lines long")
 
     @hook_impl
