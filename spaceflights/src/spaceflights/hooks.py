@@ -78,8 +78,8 @@ class InspectHooks:
 
     @hook_impl
     def after_dataset_loaded(self, dataset_name: str, data: Any) -> None:
-        # TODO: Log the shape of the dataset if it is a pandas DataFrame.
-        pass
+        if isinstance(data, pd.DataFrame):
+            log.info(f"{dataset_name} has shape {data.shape}")
 
 def _inspect_func(func: Callable) -> Tuple[str, int]:
     """Gives the location (file and line number) and number of lines in `func`."""
